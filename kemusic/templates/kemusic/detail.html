@@ -1,0 +1,61 @@
+{% extends 'kemusic/base.html' %}
+{% block title %}Detail{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+
+        <!--Album Information-->
+        <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <img src="{{ album.album_cover.url }}" class="img img-responsive" alt="" style="height: 200px; width:80%;">
+                <div class="caption">
+                <h5>{{ album.album_name }}</h5>
+                 <h5>{{ album.album_genre }}</h5>
+            </div>
+         </div>
+        </div>
+    </div>
+
+    <!--song information-->
+    <div class="col-sm-9">
+    <ul class="nav nav-pills">
+        <li class="active"><a href="">Songs</a></li>
+        <li><a href="{% url 'kemusic:create-song' album.id %}">Add song</a></li>
+    </ul>
+    <div class="panel panel-default" style="margin: 3px;">
+        <div class="panel-body">
+            <h5 class="text-info">Song</h5>
+            <hr>
+
+            <table class="table">
+                <thead>
+                <th>Song Name</th>
+                <th>Audio</th>
+                <th>Favourite</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                {% if album.song_set %}
+                    {% for song in album.song_set.all %}
+                    <tr>
+                        <td>{{ song.song_name }}</td>
+                        <td><a href="{{ song.song_audio.url }}" class="btn btn-danger btn-sm" target="_blank"><i class="fas fa-play"></i></a></td>
+                        <td><a href="" class="btn btn-danger btn-sm"><i class="fas fa-star"></i></td></a>
+                        <td>
+                            <a href="{% url 'kemusic:song-update' album.id %}" class="btn btn-success btn -sm"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'kemusic:song-delete' album.id song.id %}" class="btn btn-danger btn -sm"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}

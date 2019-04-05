@@ -1,0 +1,28 @@
+{% extends 'kemusic/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}New Song{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h3 class="text-primary text-capitalize">{% if object %}Update&nbsp;<i class="fas fa-headphones-alt fn-3x"></i>&nbsp; Song{% else %}new<i class="fas fa-headphones-alt fn-3x"></i>&nbsp;song{% endif %}</h3>
+                    {% if message %}
+                    <div class="alert alert-danger">
+                        <h4>{{ message }}<h4>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btm btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

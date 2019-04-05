@@ -1,0 +1,28 @@
+{% extends 'kemusic/base.html' %}
+{% block title %}Albums{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if albums %}
+            {% for album in albums %}
+                <div class="col-sm-3">
+                <div class="thumbnail">
+                    <a href="{% url 'kemusic:detail' album.id %}">
+                    <img src="{{ album.album_cover.url }}" class="img img-responsive img-circle" alt="" style="height: 250px;">
+                    </a>
+                    <div class="caption">
+                        <h4 style="..">{{ album.album_genre }}</h4>
+                        <h4 style="..">{{ album.album_name }}</h4>
+                        <h5 style="..">{{ album.artist_name }}</h5>
+                        <a href="{% url 'kemusic:album-update' album.id %}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'kemusic:album-delete' album.id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                        <a href="" class="btn btn-success" style="float:right"><i class="fas fa-heart"></i></a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

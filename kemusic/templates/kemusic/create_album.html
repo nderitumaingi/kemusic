@@ -1,0 +1,28 @@
+{% extends 'kemusic/base.html' %}
+{% block title %}Create Album{% endblock %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-3">
+        <div class="panel panel-default panel-body">
+            <h3 class="text-info text-center text-capitalize">{% if object %}Update&nbsp;<i class="fas fa-headphones-alt fn-3x"></i>&nbsp; Album{% else %}new<i class="fas fa-headphones-alt fn-3x"></i>&nbsp;album{% endif %}</h3>
+            <hr>
+
+            <form method="post" enctype="multipart/form-data">
+                {% if message %}
+                <div class="alert alert-danger">
+                    <h4>{{ message }}</h4>
+                </div>
+                {% endif %}
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <button type="submit" class="btn btn-primary btn-lg active">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
