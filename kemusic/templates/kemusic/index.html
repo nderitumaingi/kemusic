@@ -6,7 +6,7 @@
         {% if albums %}
             {% for album in albums %}
                 <div class="col-sm-3">
-                <div class="thumbnail">
+                <div class="thumbnail" style="background-color: lightskyblue;">
                     <a href="{% url 'kemusic:detail' album.id %}">
                     <img src="{{ album.album_cover.url }}" class="img img-responsive img-circle" alt="" style="height: 250px;">
                     </a>
